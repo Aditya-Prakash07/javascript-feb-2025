@@ -1,0 +1,88 @@
+A callback in JavaScript is a function passed as an argument to another function and executed later. It is commonly used for asynchronous programming (e.g., handling API calls, timers, or event listeners).
+
+Example of a Callback Function
+function fetchData(callback) {
+    setTimeout(() => {
+        console.log("Data fetched!");
+        callback(); // Execute the callback after fetching data
+    }, 1000);
+}
+
+function processData() {
+    console.log("Processing data...");
+}
+
+fetchData(processData);
+// Output after 1 second:
+// Data fetched!
+// Processing data...
+Common Use Cases
+Asynchronous operations (setTimeout, API calls)
+Event handling (addEventListener)
+Array methods (map, filter, reduce)
+Why Use Callbacks?
+Avoid blocking execution (especially in async operations)
+Enable modular and reusable code
+🚀 Callbacks are the foundation of asynchronous programming in JavaScript!
+
+
+
+
+
+Asynchronous Programming in JavaScript
+Asynchronous programming allows JavaScript to execute non-blocking code, meaning the program doesn’t wait for an operation (like fetching data) to complete before moving on to the next task.
+
+Why Asynchronous?
+JavaScript is single-threaded (it can execute only one task at a time). Without async behavior, long-running tasks (e.g., API calls, file reading) would freeze the page.
+
+Example of Blocking (Synchronous) Code
+console.log("Start");
+alert("This blocks everything until dismissed!");
+console.log("End");
+🔴 The alert() stops everything until the user closes it.
+
+Asynchronous Code Using setTimeout
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Async Task Completed!"); 
+}, 2000);
+
+console.log("End");
+✅ Output:
+
+Start
+End
+Async Task Completed! (after 2 sec)
+JavaScript continues execution instead of waiting for setTimeout to finish.
+
+Ways to Handle Asynchronous Code
+1️⃣ Callbacks
+2️⃣ Promises (.then())
+3️⃣ Async/Await (Best Practice)
+
+Using Promises (Better than Callbacks)
+
+function fetchData() {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve("Data received"), 2000);
+    });
+}
+
+fetchData().then((data) => console.log(data)); 
+Using Async/Await (Best & Cleanest)
+
+async function fetchData() {
+    return "Data received";
+}
+
+async function main() {
+    let data = await fetchData();
+    console.log(data);
+}
+
+main();
+Key Benefits of Asynchronous Programming
+✅ Prevents UI freeze
+✅ Handles API calls, database queries, file reading smoothly
+✅ Improves performance 🚀

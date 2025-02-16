@@ -1,0 +1,131 @@
+ECMAScript 6 (ES6) - The Major JavaScript Upgrade 🚀
+ES6 (ECMAScript 2015) introduced modern features to JavaScript, making it more powerful, readable, and efficient. Below are the key ES6 concepts:
+
+1️⃣ let & const (Block Scope Variables)
+
+✅ let and const provide block scope, unlike var, which is function-scoped.
+✅ const prevents reassignment.
+
+let a = 10;
+const b = 20;
+a = 15; // ✅ Allowed
+b = 25; // ❌ Error (const cannot be reassigned)
+2️⃣ Arrow Functions (=>)
+
+✅ Shorter syntax for functions.
+✅ Automatically binds this.
+
+const sum = (a, b) => a + b;
+console.log(sum(5, 3)); // 8
+3️⃣ Template Literals ( )
+
+✅ Allows embedding variables inside strings using ${}.
+✅ Supports multiline strings.
+
+let name = "Aditya";
+console.log(`Hello, ${name}!`); // "Hello, Aditya!"
+4️⃣ Default Parameters
+
+✅ Set default values for function parameters.
+
+function greet(name = "Guest") {
+  console.log(`Hello, ${name}!`);
+}
+greet(); // "Hello, Guest!"
+5️⃣ Spread (...) & Rest (...) Operators
+
+✅ Spread expands arrays/objects.
+✅ Rest collects function arguments into an array.
+
+let nums = [1, 2, 3];
+let newNums = [...nums, 4, 5]; // Spread
+console.log(newNums); // [1, 2, 3, 4, 5]
+
+function sum(...values) { // Rest
+  return values.reduce((a, b) => a + b);
+}
+console.log(sum(1, 2, 3)); // 6
+6️⃣ Destructuring (Array & Object)
+
+✅ Extract values from arrays/objects easily.
+
+// Array Destructuring
+let [x, y] = [10, 20];
+console.log(x, y); // 10, 20
+
+// Object Destructuring
+let person = { name: "Aditya", age: 25 };
+let { name, age } = person;
+console.log(name, age); // "Aditya", 25
+7️⃣ Enhanced Object Literals
+
+✅ Shorter syntax when key and variable names match.
+
+let name = "Aditya", age = 25;
+let person = { name, age }; // No need for name: name, age: age
+console.log(person); // { name: "Aditya", age: 25 }
+8️⃣ Modules (import & export)
+
+✅ Enables modular programming.
+
+Exporting (file1.js)
+export const PI = 3.14;
+export function add(a, b) { return a + b; }
+Importing (file2.js)
+import { PI, add } from "./file1.js";
+console.log(add(2, 3)); // 5
+9️⃣ Classes (OOP in JavaScript)
+
+✅ ES6 introduced class-based OOP.
+
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+let p1 = new Person("Aditya", 25);
+p1.greet(); // "Hello, my name is Aditya"
+🔟 Promises (Asynchronous Handling)
+
+✅ Handles asynchronous operations without callbacks.
+
+const fetchData = () => new Promise((resolve, reject) => {
+  setTimeout(() => resolve("Data received"), 2000);
+});
+fetchData().then(data => console.log(data)); // "Data received" (after 2 sec)
+1️⃣1️⃣ Symbol (New Primitive)
+
+✅ A unique identifier that prevents name conflicts.
+
+const sym1 = Symbol("id");
+console.log(sym1); // Symbol(id)
+1️⃣2️⃣ Map & Set (New Data Structures)
+
+✅ Map stores key-value pairs, and Set stores unique values.
+
+let map = new Map();
+map.set("name", "Aditya");
+console.log(map.get("name")); // "Aditya"
+
+let set = new Set([1, 2, 3, 3]);
+console.log(set); // {1, 2, 3} (No duplicates)
+🛠 Summary of ES6 Features
+Feature	Purpose
+let & const	Block-scoped variables
+Arrow Functions (=>)	Shorter syntax, automatic this binding
+Template Literals	String interpolation using `${}`
+Default Parameters	Function parameters with default values
+Spread & Rest (...)	Expands or collects elements
+Destructuring	Extract values from arrays/objects easily
+Enhanced Object Literals	Shorter syntax for objects
+Modules (import/export)	Enables modular coding
+Classes	Object-oriented programming
+Promises	Handles asynchronous code
+Symbols	Unique, immutable values
+Map & Set	Efficient key-value storage & unique collections
+🚀 Final Thoughts
+ES6 made JavaScript more readable, modular, and efficient. Understanding these concepts is essential for modern JavaScript development.

@@ -1,0 +1,171 @@
+Hoisting in JavaScript (Short & Crisp) 🚀
+Hoisting is JavaScript’s behavior of moving variable and function declarations to the top of their scope during compilation.
+
+Key Points:
+✅ var is hoisted with undefined, but let and const stay in a Temporal Dead Zone (TDZ) and throw a ReferenceError if accessed before declaration.
+✅ Function declarations are fully hoisted, so they can be used before they appear in the code.
+✅ Function expressions & arrow functions are NOT hoisted (only the variable is hoisted, but not the function itself).
+
+Example:
+console.log(a); // undefined
+var a = 10;
+
+greet(); // "Hello!"
+function greet() { console.log("Hello!"); }
+
+console.log(b); // ReferenceError
+let b = 20;
+Best Practices:
+🔹 Use let and const instead of var.
+🔹 Declare functions before calling them.
+🔹 Avoid relying on hoisting for cleaner, bug-free code.
+
+
+
+
+
+
+Temporal Dead Zone (TDZ) in JavaScript 🚀
+The Temporal Dead Zone (TDZ) is the time between when a variable is hoisted and when it is initialized. Variables declared with let and const are hoisted but stay in the TDZ, meaning they cannot be accessed before their declaration.
+
+Example:
+console.log(a); // ❌ ReferenceError: Cannot access 'a' before initialization
+let a = 10;
+Key Points:
+✅ Applies to let and const (not var).
+✅ Prevents accessing variables before declaration.
+✅ Ends when the variable is initialized.
+
+Best Practice:
+🔹 Always declare variables before using them to avoid TDZ errors.
+
+
+
+
+Spread Operator (...) in JavaScript 🚀
+The spread operator (...) is used to expand elements of an iterable (like arrays, objects, or strings) into individual elements.
+
+Usage Examples:
+✅ Copying an Array:
+
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1]; // Copy of arr1
+console.log(arr2); // [1, 2, 3]
+✅ Merging Arrays:
+
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const merged = [...arr1, ...arr2];
+console.log(merged); // [1, 2, 3, 4]
+✅ Spreading in Objects (Shallow Copy):
+
+const obj1 = { a: 1, b: 2 };
+const obj2 = { ...obj1, c: 3 };
+console.log(obj2); // { a: 1, b: 2, c: 3 }
+✅ Passing Arguments to Functions:
+
+function sum(a, b, c) {
+  return a + b + c;
+}
+const numbers = [1, 2, 3];
+console.log(sum(...numbers)); // 6
+Similar Operators:
+🔹 Rest Operator (...) – Collects multiple values into an array (opposite of spread).
+
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b);
+}
+console.log(sum(1, 2, 3)); // 6
+🔹 Destructuring with Spread:
+
+const [first, ...rest] = [1, 2, 3, 4];
+console.log(first); // 1
+console.log(rest);  // [2, 3, 4]
+Key Differences:
+Operator	Purpose
+Spread (...)	Expands an array/object into individual elements
+Rest (...)	Gathers multiple values into an array
+Best Practice: Use spread for copying, merging, and passing arguments, and rest for handling variable arguments.
+
+
+
+
+
+Pass by Value vs. Pass by Reference in JavaScript 🚀
+In JavaScript, primitives are passed by value, while objects are passed by reference.
+
+🔹 Pass by Value (Primitive Types)
+When you pass primitive data types (number, string, boolean, null, undefined, symbol, bigint), a copy of the value is passed, meaning changes inside a function do not affect the original variable.
+
+✅ Example:
+
+let a = 10;
+function modify(x) {
+    x = 20;
+}
+modify(a);
+console.log(a); // 10 (original value remains unchanged)
+🔹 Why? Because a is a primitive, and only a copy of a is modified inside the function.
+
+🔹 Pass by Reference (Objects & Arrays)
+When you pass objects (including arrays and functions), a reference to the original object is passed. This means changes inside a function do affect the original object.
+
+✅ Example:
+
+let obj = { name: "Aditya" };
+function modify(o) {
+    o.name = "Rahul"; // Modifies the original object
+}
+modify(obj);
+console.log(obj.name); // "Rahul" (original object is changed)
+🔹 Why? Because obj is an object, and the function modifies the original reference.
+
+🔹 How to Prevent Modification?
+To avoid accidental changes, pass a copy of the object:
+
+let obj = { name: "Aditya" };
+function modify(o) {
+    o = { ...o, name: "Rahul" }; // Creates a new object instead of modifying the original
+}
+modify(obj);
+console.log(obj.name); // "Aditya" (original remains unchanged)
+🔹 Summary
+Data Type	Passed By	Changes Affect Original?
+Primitive (Number, String, Boolean, etc.)	Value	❌ No
+Objects, Arrays, Functions	Reference	✅ Yes
+Best Practice: Be careful when modifying objects inside functions—use spread ({...obj}) or Object.assign() to create copies when needed. 🚀
+
+
+
+
+Shallow Copy vs. Deep Copy in JavaScript 🚀
+🔹 Shallow Copy:
+A shallow copy creates a new object, but nested objects (references) are still shared with the original object.
+
+✅ Example (Shallow Copy using Spread ...)
+
+let obj1 = { name: "Aditya", address: { city: "Hajipur" } };
+let obj2 = { ...obj1 }; // Shallow copy
+
+obj2.address.city = "Patna"; // Modifies original object too!
+
+console.log(obj1.address.city); // "Patna" (changes reflect in original)
+⚠ Problem: Changing obj2.address.city also changes obj1.address.city because address is a reference.
+
+🔹 Deep Copy:
+A deep copy creates a completely new object, including nested objects, breaking references to the original.
+
+✅ Example (Deep Copy using structuredClone)
+
+let obj1 = { name: "Aditya", address: { city: "Hajipur" } };
+let obj2 = structuredClone(obj1); // Deep copy
+
+obj2.address.city = "Patna"; // Only obj2 is modified
+
+console.log(obj1.address.city); // "Hajipur" (original remains unchanged)
+🔹 Key Differences
+Feature	Shallow Copy	Deep Copy
+Nested Objects	Shared (reference)	Completely copied
+Modifying Copy Affects Original?	✅ Yes	❌ No
+Methods	Object.assign(), ...spread	structuredClone(), JSON.parse(JSON.stringify(obj)), Lodash cloneDeep()
+✅ Use deep copy when modifying nested data to avoid unintended changes. 🚀

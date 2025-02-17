@@ -1,18 +1,30 @@
-// Selecting Elements
+// 1. Selecting Elements
 let heading1 = document.querySelector('h1');
 let headings4 = document.querySelectorAll('h4');
 let firstParagraph = document.getElementById('first-paragraph');
 let specialElements = document.getElementsByClassName('special');
 let allDivs = document.getElementsByTagName('div');
 
-// Manipulating Elements
+// 2. Manipulating Elements
 heading1.innerText = "Updated Heading";
-headings4.forEach(h4 => h4.style.color = 'red');
-firstParagraph.innerHTML = "<strong>This is the first paragraph.</strong>";
-specialElements[0].setAttribute('data-info', 'special-element');
-allDivs[0].classList.add('highlight');
+headings4.forEach(h4 => h4.style.color = 'blue');
+if (firstParagraph) {
+  firstParagraph.innerHTML = "<strong>This is the first paragraph.</strong>";
+} else {
+  console.error('Element with ID "first-paragraph" not found');
+}
+if (specialElements.length > 0) {
+  specialElements[0].setAttribute('data-info', 'special-element');
+} else {
+  console.error('No elements with class "special" found');
+}
+if (allDivs.length > 0) {
+  allDivs[0].classList.add('highlight');
+} else {
+  console.error('No div elements found');
+}
 
-// Creating and Removing Elements
+// 3. Creating and Removing Elements
 let newDiv = document.createElement('div');
 newDiv.textContent = "This is a new div";
 document.body.appendChild(newDiv);
@@ -22,18 +34,23 @@ if (oldDiv) {
   document.body.removeChild(oldDiv);
 }
 
-// Event Handling
-let button = document.querySelector('button');
-button.addEventListener('click', () => {
-  alert('Button was clicked!');
-});
+// 4. Event Handling
+// Ensure the button exists and has the correct selector
+let button = document.querySelector('#myButton');
+if (button) {
+  button.addEventListener('click', () => {
+    alert('Button was clicked!');
+  });
+} else {
+  console.error('Button not found');
+}
 
 let inputField = document.querySelector('input[name="username"]');
 inputField.addEventListener('input', (event) => {
   console.log('Input value:', event.target.value);
 });
 
-// Traversing the DOM
+// 5. Traversing the DOM
 let parent = heading1.parentNode;
 let children = parent.childNodes;
 let firstChild = parent.firstChild;
@@ -41,12 +58,14 @@ let lastChild = parent.lastChild;
 let nextSibling = heading1.nextSibling;
 let previousSibling = heading1.previousSibling;
 
-// Styling Elements
+// 6. Styling Elements
 heading1.style.fontSize = '2em';
 heading1.classList.add('highlight');
-specialElements[0].style.backgroundColor = 'yellow';
+if (specialElements.length > 0) {
+  specialElements[0].style.backgroundColor = 'yellow';
+}
 
-// Form Handling
+// 7. Form Handling
 let form = document.querySelector('form');
 form.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -57,14 +76,14 @@ form.addEventListener('submit', (event) => {
 let input = document.querySelector('input[name="username"]');
 input.value = 'New Username';
 
-// Browser Object Model (BOM)
+// 8. Browser Object Model (BOM)
 console.log(window.innerWidth);
 console.log(navigator.userAgent);
 console.log(screen.width);
 console.log(history.length);
 console.log(location.href);
 
-// Additional Examples
+// 9. Additional Examples
 
 // Example: Adding a new list item to an unordered list
 let ul = document.querySelector('ul');
@@ -95,6 +114,8 @@ inputField.addEventListener('focus', () => {
 inputField.addEventListener('blur', () => {
   console.log('Input field lost focus');
 });
+
+// 10. Advanced Concepts
 
 // Event Delegation
 document.body.addEventListener('click', (event) => {

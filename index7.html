@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://www.google.com">Google</a>
+    <p></p>
+    <script>
+        let aTag = document.querySelector('a');
+        let pTag = document.querySelector('p');
+        //aTag.setAttribute('href', 'https://yahoo.com');
+        aTag.addEventListener('click', display);
+        function display(e){
+            e.preventDefault();
+            console.log('You clicked me');
+            pTag.innerText = aTag.href;
+        }
+
+    </script>
+    
+</body>
+</html>

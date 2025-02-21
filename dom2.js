@@ -31,5 +31,30 @@ function diceRoll(e){
 
 }
 
+//way of styling using javascript
+let heading1 = document.querySelector('h1');
+// heading1.style.color = 'red';
+// heading1.style.fontSize = '48px';
+// heading1.style.backgroundColor = 'yellow';
+// heading1.style.border = '2px solid black';
+// heading1.style.padding = '10px';
+// heading1.style.margin = '10px';
+// heading1.style.borderRadius = '10px';
+// heading1.style.boxShadow = '5px 5px 5px gray';
+// heading1.style.textAlign = 'center';
+
+ heading1.style.cssText = 'color: red; font-size: 48px; background-color: yellow; border: 2px solid black; padding: 10px; margin: 10px; border-radius: 10px; box-shadow: 5px 5px 5px gray; text-align: center;';
+
+//way of creating elements using javascript
+let newDiv = document.createElement('div');
+newDiv.textContent = "This is a new div";
+document.body.appendChild(newDiv);
+
+//way of removing elements using javascript
+let oldDiv = document.querySelector('.old-div');
+if (oldDiv) {
+  document.body.removeChild(oldDiv);
+}
+
 
 
